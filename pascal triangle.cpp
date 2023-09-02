@@ -1,28 +1,19 @@
 #include <stdio.h>
-int fact(int n) 
-{
-  int a; 
-    for(a=1;n>1;n--)
-    a*= n;
-	return a;
-}
-int combination(int n,int r)
-{
-  return fact(n)/(fact(n-r)*fact(r));
-}
-int main()
-{
-  int rows;
-  int i,j;
-  printf("Enter Number of Rows: ");
-  scanf("%d", &rows);
-  for(i=0;i<=rows;i++)
-  {
-    for(j=0;j<=rows-i; j++)
-      printf("  ");
-    for(j=0;j<=i;j++)
-      printf(" %3d",combination(i, j));
-    printf("\n");
-  }
-  return 0;
+int main() {
+   int rows, coef = 1, space, i, j;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = 0; i < rows; i++) {
+      for (space = 1; space <= rows - i; space++)
+         printf("  ");
+      for (j = 0; j <= i; j++) {
+         if (j == 0 || i == 0)
+            coef = 1;
+         else
+            coef = coef * (i - j + 1) / j;
+         printf("%4d", coef);
+      }
+      printf("\n");
+   }
+   return 0;
 }
